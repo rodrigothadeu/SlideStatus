@@ -32,6 +32,7 @@ function openSidebar() {
   SlidesApp.getUi().showSidebar(html);
 }
 
+
 // ─── Funções públicas chamadas pelo frontend via google.script.run ─────────────
 
 /**
