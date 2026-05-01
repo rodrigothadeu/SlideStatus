@@ -75,16 +75,15 @@ function _getDefaultStatus() {
 
 /**
  * @description Valida que o slideId existe na apresentação ativa.
+ * Itera pelo array de slides em vez de usar getSlideById(), que pode
+ * retornar null para slides que não estão selecionados ativamente.
  * @param {string} slideId ID do slide a validar.
  * @throws {Error} Se o slideId não existir no deck atual.
  */
 function _validateSlideId(slideId) {
-  try {
-    const slide = SlidesApp.getActivePresentation().getSlideById(slideId);
-    if (!slide) throw new Error('Slide não encontrado: ' + slideId);
-  } catch (e) {
-    throw new Error('Slide inválido: ' + slideId);
-  }
+  const slides = SlidesApp.getActivePresentation().getSlides();
+  const exists = slides.some(function(s) { return s.getObjectId() === slideId; });
+  if (!exists) throw new Error('Slide inválido: ' + slideId);
 }
 
 function _getCurrentUserEmailStatus() {
