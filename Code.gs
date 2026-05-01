@@ -10,9 +10,12 @@
  * @param {Object} e Evento do GAS.
  */
 function onOpen(e) {
-  SlidesApp.getUi()
-    .createAddonMenu()
+  const ui = SlidesApp.getUi();
+  ui.createAddonMenu()
     .addItem('Abrir SlideStatus', 'openSidebar')
+    .addToUi();
+  ui.createMenu('SlideStatus')
+    .addItem('Abrir', 'openSidebar')
     .addToUi();
 }
 

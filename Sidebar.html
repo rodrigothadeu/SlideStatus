@@ -416,6 +416,226 @@
     }
     .btn-back:hover { background: var(--border); color: var(--text); }
 
+    /* ── Settings panel ──────────────────────────────────────────────────── */
+    .settings-panel {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .settings-panel::-webkit-scrollbar { width: 3px; }
+    .settings-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .settings-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-2) var(--sp-4);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .settings-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: opacity .12s;
+    }
+    .btn-add:hover { opacity: .85; }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: 8px var(--sp-4);
+      border-bottom: 1px solid var(--border);
+      transition: background .1s;
+    }
+    .status-row:last-child { border-bottom: none; }
+    .status-row:hover { background: var(--surface); }
+    .status-row.inactive { opacity: .5; }
+
+    .status-row-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-row-name {
+      flex: 1;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .status-row-emoji { font-size: 13px; flex-shrink: 0; }
+    .chip-default {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      background: var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1px 4px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* Toggle switch */
+    .toggle {
+      width: 28px; height: 16px;
+      border-radius: var(--radius-full);
+      background: var(--border);
+      position: relative;
+      cursor: pointer;
+      border: none;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+    .toggle.on { background: var(--color-done); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform .2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    .toggle.on::after { transform: translateX(12px); }
+
+    .btn-edit {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      transition: color .12s, background .12s;
+      flex-shrink: 0;
+    }
+    .btn-edit:hover { color: var(--text-muted); background: var(--border); }
+
+    /* Form */
+    .status-form {
+      padding: var(--sp-3) var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      flex: 1;
+    }
+    .form-preview {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: var(--sp-2) var(--sp-3);
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      margin-bottom: var(--sp-1);
+    }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .form-input {
+      width: 100%;
+      padding: 6px var(--sp-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color .15s;
+    }
+    .form-input:focus { border-color: var(--text-muted); }
+    .form-input.error { border-color: #dc2626; }
+    .form-error { font-size: 11px; color: #dc2626; min-height: 14px; }
+    .form-row { display: flex; gap: var(--sp-2); }
+    .form-row .form-group { flex: 1; }
+    .form-char-count {
+      font-size: 10px;
+      color: var(--text-subtle);
+      text-align: right;
+      margin-top: 2px;
+    }
+    input[type="color"].form-input {
+      padding: 2px 4px;
+      height: 32px;
+      cursor: pointer;
+    }
+    .form-actions {
+      display: flex;
+      gap: var(--sp-2);
+      margin-top: var(--sp-1);
+    }
+    .btn-primary {
+      flex: 1;
+      padding: 7px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: opacity .12s;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-secondary {
+      flex: 1;
+      padding: 7px;
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .btn-secondary:hover { background: var(--border); }
+
+    /* ── Estado recolhido ────────────────────────────────────────────────── */
+    body.ss-collapsed .progress-section,
+    body.ss-collapsed #main,
+    body.ss-collapsed #historyPanel,
+    body.ss-collapsed #settingsPanel,
+    body.ss-collapsed .offline-banner,
+    body.ss-collapsed .footer,
+    body.ss-collapsed #selectorOverlay,
+    body.ss-collapsed .toast { display: none !important; }
+    body.ss-collapsed .header { border-bottom: none; }
+    #btnCollapse svg { transition: transform .2s; }
+
     /* ── Offline banner ──────────────────────────────────────────────────── */
     .offline-banner {
       display: none;
@@ -469,15 +689,30 @@
   <!-- Header — muda conforme a view ativa -->
   <div class="header" id="header">
     <span class="header-title" id="headerTitle">SlideStatus</span>
-    <button class="btn-icon" id="btnRefresh" onclick="manualRefresh()" title="Atualizar slides">
-      <svg id="refreshIcon" width="14" height="14" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
-        <path d="M21 3v5h-5"/>
-        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
-        <path d="M8 16H3v5"/>
-      </svg>
-    </button>
+    <div style="display:flex;gap:2px">
+      <button class="btn-icon" id="btnRefresh" onclick="manualRefresh()" title="Atualizar slides">
+        <svg id="refreshIcon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+      </button>
+      <button class="btn-icon" id="btnCollapse" onclick="toggleCollapse()" title="Recolher sidebar">
+        <svg id="collapseIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"/>
+        </svg>
+      </button>
+      <button class="btn-icon" id="btnSettings" onclick="setView('settings')" title="Configurações">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Barra de progresso -->
@@ -504,6 +739,9 @@
 
   <!-- Painel de histórico (oculto por padrão) -->
   <div id="historyPanel" class="history-panel" style="display:none"></div>
+
+  <!-- Painel de configurações (oculto por padrão) -->
+  <div id="settingsPanel" class="settings-panel" style="display:none"></div>
 
   <!-- Dropdown de seleção de status -->
   <div class="selector-overlay" id="selectorOverlay" onclick="closeSelector()">
@@ -726,9 +964,7 @@
       el.id = 'badge-' + slideId;
       el.style.backgroundColor = hexToRgba(s.color, 0.11);
       el.style.color = s.color;
-      el.innerHTML =
-        '<span class="status-badge-emoji">' + s.emoji + '</span>' +
-        '<span class="status-badge-name">' + escHtml(s.name) + '</span>';
+      el.innerHTML = _badgeHtml(s);
       el.onclick = function(e) { e.stopPropagation(); openSelector(slideId, el); };
       return el;
     }
@@ -740,9 +976,7 @@
       if (!el) return;
       el.style.backgroundColor = hexToRgba(s.color, 0.11);
       el.style.color = s.color;
-      el.innerHTML =
-        '<span class="status-badge-emoji">' + s.emoji + '</span>' +
-        '<span class="status-badge-name">' + escHtml(s.name) + '</span>';
+      el.innerHTML = _badgeHtml(s);
     }
 
     // ── Barra de Progresso ────────────────────────────────────────────────────
@@ -870,35 +1104,51 @@
 
     function statusChip(s) {
       return '<span class="history-status" style="background:' + hexToRgba(s.color, 0.11) + ';color:' + s.color + '">' +
-        s.emoji + ' ' + escHtml(s.name) + '</span>';
+        (s.emoji ? s.emoji + ' ' : '') + escHtml(s.name) + '</span>';
     }
 
     // ── Navegação entre views ─────────────────────────────────────────────────
+    const _BACK_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>';
+
     function setView(view, slideId) {
-      const main    = document.getElementById('main');
-      const panel   = document.getElementById('historyPanel');
-      const prog    = document.getElementById('progressSection');
-      const hdr     = document.getElementById('headerTitle');
-      const btnRef  = document.getElementById('btnRefresh');
+      const main      = document.getElementById('main');
+      const histPanel = document.getElementById('historyPanel');
+      const settPanel = document.getElementById('settingsPanel');
+      const prog      = document.getElementById('progressSection');
+      const btnRef    = document.getElementById('btnRefresh');
+      const btnSet    = document.getElementById('btnSettings');
+
+      histPanel.style.display = 'none';
+      settPanel.style.display = 'none';
 
       if (view === 'detail') {
-        main.style.display  = 'none';
-        prog.style.display  = 'none';
-        panel.style.display = 'flex';
-
+        main.style.display = 'none';
+        prog.style.display = 'none';
+        histPanel.style.display = 'flex';
         const num = state.slides.findIndex(function(s) { return s.id === slideId; });
-        hdr.outerHTML = '<button class="btn-back" id="headerTitle" onclick="setView(\'main\')">' +
-          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>' +
-          'Slide ' + (num + 1) + '</button>';
+        document.getElementById('headerTitle').outerHTML =
+          '<button class="btn-back" id="headerTitle" onclick="setView(\'main\')">' +
+          _BACK_SVG + 'Slide ' + (num + 1) + '</button>';
         btnRef.style.display = 'none';
-      } else {
-        main.style.display  = '';
-        panel.style.display = 'none';
+        if (btnSet) btnSet.style.display = 'none';
 
-        // Restaurar header — substituir o btn-back pelo título original
-        const hdrEl = document.getElementById('headerTitle');
-        hdrEl.outerHTML = '<span class="header-title" id="headerTitle">SlideStatus</span>';
+      } else if (view === 'settings') {
+        main.style.display = 'none';
+        prog.style.display = 'none';
+        settPanel.style.display = 'flex';
+        document.getElementById('headerTitle').outerHTML =
+          '<button class="btn-back" id="headerTitle" onclick="setView(\'main\')">' +
+          _BACK_SVG + 'Configurações</button>';
+        btnRef.style.display = 'none';
+        if (btnSet) btnSet.style.display = 'none';
+        renderSettingsList();
+
+      } else {
+        main.style.display = '';
+        document.getElementById('headerTitle').outerHTML =
+          '<span class="header-title" id="headerTitle">SlideStatus</span>';
         btnRef.style.display = '';
+        if (btnSet) btnSet.style.display = '';
         renderProgressBar();
       }
     }
@@ -913,7 +1163,7 @@
         opt.className = 'selector-option' + (s.id === currentId ? ' active' : '');
         opt.innerHTML =
           '<span class="selector-dot" style="background:' + s.color + '"></span>' +
-          escHtml(s.emoji + ' ' + s.name);
+          escHtml((s.emoji ? s.emoji + ' ' : '') + s.name);
         opt.onclick = function(e) { e.stopPropagation(); selectStatus(slideId, s.id, currentId); };
         opts.appendChild(opt);
       });
@@ -1009,6 +1259,236 @@
       return String(s)
         .replace(/&/g,'&amp;').replace(/</g,'&lt;')
         .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function _badgeHtml(s) {
+      return (s.emoji ? '<span class="status-badge-emoji">' + s.emoji + '</span>' : '') +
+        '<span class="status-badge-name">' + escHtml(s.name) + '</span>';
+    }
+
+    // ── Recolher sidebar ──────────────────────────────────────────────────────
+    let isCollapsed = false;
+    function toggleCollapse() {
+      isCollapsed = !isCollapsed;
+      document.body.classList.toggle('ss-collapsed', isCollapsed);
+      const icon = document.getElementById('collapseIcon');
+      if (icon) icon.style.transform = isCollapsed ? 'rotate(180deg)' : '';
+      const btn = document.getElementById('btnCollapse');
+      if (btn) btn.title = isCollapsed ? 'Expandir sidebar' : 'Recolher sidebar';
+    }
+
+    // ── Settings ──────────────────────────────────────────────────────────────
+    let settingsEditingId = null;
+    let allStatuses = [];
+
+    function refreshAllStatuses(cb) {
+      google.script.run
+        .withSuccessHandler(function(s) { allStatuses = s; if (cb) cb(); })
+        .withFailureHandler(function(e) { showToast('Erro ao carregar: ' + escHtml(e.message), true); })
+        .getStatuses();
+    }
+
+    function renderSettingsList() {
+      settingsEditingId = null;
+      const panel = document.getElementById('settingsPanel');
+      panel.innerHTML = '<div class="history-loading"><div class="spinner"></div><span>Carregando...</span></div>';
+      refreshAllStatuses(function() { _drawSettingsList(); });
+    }
+
+    function _drawSettingsList() {
+      const panel = document.getElementById('settingsPanel');
+      panel.innerHTML = '';
+      const toolbar = document.createElement('div');
+      toolbar.className = 'settings-toolbar';
+      toolbar.innerHTML =
+        '<span class="settings-section-label">Status</span>' +
+        '<button class="btn-add" onclick="openStatusForm(null)">+ Novo</button>';
+      panel.appendChild(toolbar);
+      const list = document.createElement('div');
+      allStatuses.forEach(function(s) { list.appendChild(_buildStatusRow(s)); });
+      panel.appendChild(list);
+    }
+
+    function _buildStatusRow(s) {
+      const row = document.createElement('div');
+      row.className = 'status-row' + (s.active ? '' : ' inactive');
+      row.id = 'settrow-' + s.id;
+      const editSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+      row.innerHTML =
+        '<span class="status-row-dot" style="background:' + s.color + '"></span>' +
+        (s.emoji ? '<span class="status-row-emoji">' + s.emoji + '</span>' : '') +
+        '<span class="status-row-name">' + escHtml(s.name) + '</span>' +
+        (s.isDefault ? '<span class="chip-default">Padrão</span>' : '') +
+        '<button class="btn-edit" onclick="openStatusForm(\'' + s.id + '\')" title="Editar">' + editSvg + '</button>' +
+        '<button class="toggle' + (s.active ? ' on' : '') + '" onclick="handleToggleStatus(\'' + s.id + '\')" title="' + (s.active ? 'Desativar' : 'Ativar') + '"></button>';
+      return row;
+    }
+
+    function openStatusForm(statusId) {
+      settingsEditingId = statusId;
+      const e = statusId ? allStatuses.find(function(s) { return s.id === statusId; }) : null;
+      const panel = document.getElementById('settingsPanel');
+      panel.innerHTML = '';
+
+      const toolbar = document.createElement('div');
+      toolbar.className = 'settings-toolbar';
+      toolbar.innerHTML =
+        '<span class="settings-section-label">' + (e ? 'Editar status' : 'Novo status') + '</span>' +
+        '<button class="btn-icon" onclick="_drawSettingsList()" title="Voltar">' + _BACK_SVG + '</button>';
+      panel.appendChild(toolbar);
+
+      const CATS = [
+        { v: 'pending',     l: 'Pendente' },
+        { v: 'in_progress', l: 'Em andamento' },
+        { v: 'done',        l: 'Concluído' }
+      ];
+      const catOpts = CATS.map(function(c) {
+        return '<option value="' + c.v + '"' + (e && e.category === c.v ? ' selected' : '') + '>' + c.l + '</option>';
+      }).join('');
+
+      const defColor = e ? e.color : '#6B7280';
+      const form = document.createElement('div');
+      form.className = 'status-form';
+      form.innerHTML =
+        '<div class="form-preview" id="formPreview" style="background:' + hexToRgba(defColor, 0.11) + ';color:' + defColor + '">' +
+          '<span id="formPreviewEmoji">' + (e && e.emoji ? e.emoji : '') + '</span>' +
+          '<span id="formPreviewName">' + escHtml(e ? e.name : 'Novo status') + '</span>' +
+        '</div>' +
+        '<div class="form-group">' +
+          '<label class="form-label">Nome</label>' +
+          '<input class="form-input" id="fName" maxlength="30" value="' + escHtml(e ? e.name : '') + '" oninput="updateFormPreview()" placeholder="Ex: Em revisão">' +
+          '<div class="form-char-count" id="fNameCount">' + (e ? e.name.length : 0) + '/30</div>' +
+          '<div class="form-error" id="fNameError"></div>' +
+        '</div>' +
+        '<div class="form-row">' +
+          '<div class="form-group">' +
+            '<label class="form-label">Emoji</label>' +
+            '<input class="form-input" id="fEmoji" maxlength="4" value="' + (e ? (e.emoji || '') : '') + '" oninput="updateFormPreview()" placeholder="Opcional">' +
+            '<div class="form-error" id="fEmojiError"></div>' +
+          '</div>' +
+          '<div class="form-group">' +
+            '<label class="form-label">Cor</label>' +
+            '<input type="color" class="form-input" id="fColor" value="' + (e ? e.color : '#6B7280') + '" oninput="updateFormPreview()">' +
+          '</div>' +
+        '</div>' +
+        '<div class="form-group">' +
+          '<label class="form-label">Categoria</label>' +
+          '<select class="form-input" id="fCategory">' + catOpts + '</select>' +
+        '</div>' +
+        '<div class="form-actions">' +
+          '<button class="btn-secondary" onclick="_drawSettingsList()">Cancelar</button>' +
+          '<button class="btn-primary" id="btnSaveStatus" onclick="saveStatusForm()">Salvar</button>' +
+        '</div>';
+      panel.appendChild(form);
+    }
+
+    function updateFormPreview() {
+      const nameVal = document.getElementById('fName').value;
+      const emoji   = document.getElementById('fEmoji').value;
+      const color   = document.getElementById('fColor').value || '#6B7280';
+      const cnt = document.getElementById('fNameCount');
+      if (cnt) cnt.textContent = nameVal.length + '/30';
+      const prev = document.getElementById('formPreview');
+      if (prev) { prev.style.background = hexToRgba(color, 0.11); prev.style.color = color; }
+      const pe = document.getElementById('formPreviewEmoji');
+      const pn = document.getElementById('formPreviewName');
+      if (pe) pe.textContent = emoji;
+      if (pn) pn.textContent = nameVal.substring(0, 30) || 'Novo status';
+    }
+
+    function saveStatusForm() {
+      const name     = (document.getElementById('fName').value || '').trim();
+      const emoji    = document.getElementById('fEmoji').value.trim();
+      const color    = document.getElementById('fColor').value;
+      const category = document.getElementById('fCategory').value;
+      let valid = true;
+
+      document.getElementById('fName').classList.remove('error');
+      document.getElementById('fNameError').textContent = '';
+      document.getElementById('fEmoji').classList.remove('error');
+      document.getElementById('fEmojiError').textContent = '';
+
+      if (!name) {
+        document.getElementById('fName').classList.add('error');
+        document.getElementById('fNameError').textContent = 'Nome é obrigatório.';
+        valid = false;
+      }
+      if (emoji && [...emoji].length !== 1) {
+        document.getElementById('fEmoji').classList.add('error');
+        document.getElementById('fEmojiError').textContent = 'Use exatamente 1 emoji ou deixe em branco.';
+        valid = false;
+      }
+      if (!valid) return;
+
+      const btn = document.getElementById('btnSaveStatus');
+      if (btn) { btn.disabled = true; btn.textContent = 'Salvando...'; }
+
+      function onSaved() {
+        google.script.run
+          .withSuccessHandler(function(active) {
+            state.statuses = active;
+            _refreshVisibleBadges();
+            showToast('Status salvo.');
+            renderSettingsList();
+          })
+          .withFailureHandler(function() { renderSettingsList(); })
+          .getActiveStatuses();
+      }
+      function onSaveErr(err) {
+        if (btn) { btn.disabled = false; btn.textContent = 'Salvar'; }
+        const fe = document.getElementById('fNameError');
+        if (fe) {
+          fe.textContent = err.message || 'Erro ao salvar.';
+          document.getElementById('fName').classList.add('error');
+        } else {
+          showToast('Erro: ' + escHtml(err.message || 'Falha ao salvar.'), true);
+        }
+      }
+
+      if (settingsEditingId) {
+        google.script.run
+          .withSuccessHandler(onSaved)
+          .withFailureHandler(onSaveErr)
+          .updateStatus(settingsEditingId, { name: name, emoji: emoji, color: color, category: category });
+      } else {
+        const maxOrder = allStatuses.reduce(function(m, s) { return Math.max(m, s.order || 0); }, 0);
+        google.script.run
+          .withSuccessHandler(onSaved)
+          .withFailureHandler(onSaveErr)
+          .createStatus(name, emoji, color, maxOrder + 1, category);
+      }
+    }
+
+    function handleToggleStatus(statusId) {
+      const row    = document.getElementById('settrow-' + statusId);
+      const toggle = row ? row.querySelector('.toggle') : null;
+      if (toggle) toggle.disabled = true;
+      google.script.run
+        .withSuccessHandler(function(s) {
+          const idx = allStatuses.findIndex(function(x) { return x.id === s.id; });
+          if (idx >= 0) allStatuses[idx] = s;
+          google.script.run
+            .withSuccessHandler(function(active) { state.statuses = active; _refreshVisibleBadges(); })
+            .getActiveStatuses();
+          if (row) { const nr = _buildStatusRow(s); row.parentNode.replaceChild(nr, row); }
+        })
+        .withFailureHandler(function(err) {
+          if (toggle) toggle.disabled = false;
+          showToast('Erro: ' + escHtml(err.message || 'Falha.'), true);
+        })
+        .toggleStatus(statusId);
+    }
+
+    function _refreshVisibleBadges() {
+      state.slides.forEach(function(slide) {
+        const s  = resolveSlideStatus(slide.id);
+        const el = document.getElementById('badge-' + slide.id);
+        if (!el) return;
+        el.style.backgroundColor = hexToRgba(s.color, 0.11);
+        el.style.color = s.color;
+        el.innerHTML = _badgeHtml(s);
+      });
+      renderProgressBar();
     }
   </script>
 </body>

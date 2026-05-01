@@ -145,7 +145,8 @@ function _validateStatusName(name, excludeId) {
 }
 
 function _validateEmoji(emoji) {
-  if (!emoji || [...emoji].length !== 1) throw new Error('O emoji deve ter exatamente 1 caractere.');
+  if (emoji === null || emoji === undefined || emoji === '') return;
+  if ([...emoji].length !== 1) throw new Error('O emoji deve ter exatamente 1 caractere (ou deixe em branco).');
 }
 
 function _validateColor(color) {
