@@ -62,6 +62,22 @@ function updateSlideStatus(slideId, statusId) {
 }
 
 /**
+ * @description Retorna o histórico e dados de um slide específico em uma única chamada.
+ * Evita múltiplas chamadas google.script.run para carregar o painel de histórico.
+ * @param {string} slideId ID do slide.
+ * @returns {Object} { slideId, pageNumber, history }
+ */
+function getSlideDetail(slideId) {
+  const slides = SlidesApp.getActivePresentation().getSlides();
+  const index  = slides.findIndex(function(s) { return s.getObjectId() === slideId; });
+  return {
+    slideId:    slideId,
+    pageNumber: index + 1,
+    history:    getSlideHistory(slideId)
+  };
+}
+
+/**
  * @description Retorna a versão do Add-on.
  * @returns {string} Versão do Add-on.
  */

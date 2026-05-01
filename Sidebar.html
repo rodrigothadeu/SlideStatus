@@ -276,6 +276,179 @@
     .toast.show { opacity: 1; }
     .toast.error { background: #dc2626; }
 
+    /* ── History button ───────────────────────────────────────────────────── */
+    .btn-history {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      transition: color .12s, background .12s;
+    }
+    .btn-history:hover { color: var(--text-muted); background: var(--border); }
+
+    /* ── History panel ────────────────────────────────────────────────────── */
+    .history-panel {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .history-panel::-webkit-scrollbar { width: 3px; }
+    .history-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .history-slide-info {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-4);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    .history-slide-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-right: auto;
+    }
+
+    .history-empty {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-subtle);
+      font-size: 12px;
+      padding: var(--sp-6);
+    }
+
+    .history-item {
+      display: flex;
+      gap: var(--sp-3);
+      padding: var(--sp-3) var(--sp-4);
+      border-bottom: 1px solid var(--border);
+    }
+    .history-item:last-child { border-bottom: none; }
+
+    .history-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-top: 1px;
+      text-transform: uppercase;
+    }
+
+    .history-body { flex: 1; min-width: 0; }
+    .history-user {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .history-change {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      line-height: 1.5;
+    }
+    .history-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 1px 6px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .history-arrow { color: var(--text-subtle); font-size: 10px; }
+    .history-time {
+      font-size: 11px;
+      color: var(--text-subtle);
+      margin-top: 3px;
+    }
+
+    .history-loading {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-2);
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ── Back button na header ────────────────────────────────────────────── */
+    .btn-back {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--font-sans);
+      padding: 3px 6px;
+      border-radius: var(--radius-sm);
+      transition: background .12s, color .12s;
+    }
+    .btn-back:hover { background: var(--border); color: var(--text); }
+
+    /* ── Offline banner ──────────────────────────────────────────────────── */
+    .offline-banner {
+      display: none;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: 7px var(--sp-4);
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      font-size: 11px;
+      color: #92400e;
+      flex-shrink: 0;
+    }
+    .offline-banner.show { display: flex; }
+    .offline-banner svg { flex-shrink: 0; }
+    .offline-banner span { flex: 1; }
+
+    /* ── Sync indicator ───────────────────────────────────────────────────── */
+    .sync-dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--color-done);
+      margin-right: 4px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .sync-dot.syncing {
+      background: var(--color-progress);
+      animation: pulse .9s ease-in-out infinite alternate;
+    }
+    .sync-dot.offline { background: #f59e0b; }
+    @keyframes pulse { from { opacity: .4; } to { opacity: 1; } }
+
     /* ── Footer ───────────────────────────────────────────────────────────── */
     .footer {
       padding: 6px var(--sp-4);
@@ -293,9 +466,9 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <span class="header-title">SlideStatus</span>
+  <!-- Header — muda conforme a view ativa -->
+  <div class="header" id="header">
+    <span class="header-title" id="headerTitle">SlideStatus</span>
     <button class="btn-icon" id="btnRefresh" onclick="manualRefresh()" title="Atualizar slides">
       <svg id="refreshIcon" width="14" height="14" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -317,11 +490,20 @@
     <div class="progress-labels" id="progressLabels"></div>
   </div>
 
+  <!-- Banner de offline (oculto por padrão) -->
+  <div class="offline-banner" id="offlineBanner">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span>Sincronização offline — tentando reconectar...</span>
+  </div>
+
   <!-- Lista de slides -->
   <div id="main" class="loading">
     <div class="spinner"></div>
     <span>Carregando slides...</span>
   </div>
+
+  <!-- Painel de histórico (oculto por padrão) -->
+  <div id="historyPanel" class="history-panel" style="display:none"></div>
 
   <!-- Dropdown de seleção de status -->
   <div class="selector-overlay" id="selectorOverlay" onclick="closeSelector()">
@@ -336,13 +518,17 @@
 
   <!-- Footer -->
   <div class="footer">
-    <span id="syncLabel">SlideStatus</span>
+    <span style="display:flex;align-items:center">
+      <span class="sync-dot" id="syncDot"></span>
+      <span id="syncLabel">Carregando...</span>
+    </span>
     <span id="slideCount" style="font-variant-numeric:tabular-nums"></span>
   </div>
 
   <script>
     // ── Estado ───────────────────────────────────────────────────────────────
-    const AUTO_REFRESH_MS = 30000;
+    const POLL_INTERVAL_MS       = 30000;
+    const MAX_FAILURES_FOR_BANNER = 3;
 
     let state = {
       slides: [],
@@ -350,61 +536,83 @@
       slideStatuses: {},
       isRefreshing: false,
       pendingSlideId: null,
-      pendingOldStatusId: null
+      pendingOldStatusId: null,
+      lastKnownTimestamp: null,
+      lastSuccessfulPoll: null,
+      consecutiveFailures: 0
     };
 
     // ── Inicialização ────────────────────────────────────────────────────────
+    setSyncState('syncing');
     google.script.run
       .withSuccessHandler(onInitialStateLoaded)
       .withFailureHandler(onLoadError)
       .getInitialState();
 
     function onInitialStateLoaded(data) {
-      state.slides       = data.slides;
-      state.statuses     = data.statuses;
+      state.slides        = data.slides;
+      state.statuses      = data.statuses;
       state.slideStatuses = data.slideStatuses || {};
       renderSlideList();
       renderProgressBar();
-      startAutoRefresh();
       updateFooter();
+      setSyncState('ok');
+      startPolling();
+      startSyncCounter();
     }
 
     function onLoadError(err) {
       document.getElementById('main').innerHTML =
         '<div class="error-state">Erro ao carregar:<br>' + escHtml(err.message || String(err)) + '</div>';
+      setSyncState('offline');
     }
 
-    // ── Refresh ───────────────────────────────────────────────────────────────
-    function manualRefresh() {
-      if (state.isRefreshing) return;
-      doRefresh();
+    // ── Polling automático (M5) ───────────────────────────────────────────────
+    function startPolling() {
+      setInterval(doPoll, POLL_INTERVAL_MS);
     }
 
-    function startAutoRefresh() {
-      setInterval(doRefresh, AUTO_REFRESH_MS);
-    }
-
-    function doRefresh() {
+    function doPoll() {
       if (state.isRefreshing) return;
       state.isRefreshing = true;
+      setSyncState('syncing');
       setRefreshSpinner(true);
       google.script.run
-        .withSuccessHandler(onRefreshSuccess)
-        .withFailureHandler(onRefreshError)
-        .getInitialState();
+        .withSuccessHandler(onPollSuccess)
+        .withFailureHandler(onPollFailure)
+        .getFullState();
     }
 
-    function onRefreshSuccess(data) {
-      state.isRefreshing = false;
+    function onPollSuccess(fullState) {
+      state.isRefreshing        = false;
+      state.consecutiveFailures = 0;
+      state.lastSuccessfulPoll  = Date.now();
       setRefreshSpinner(false);
-      reconcileSlides(data.slides, data.statuses, data.slideStatuses || {});
+      setSyncState('ok');
+      hideOfflineBanner();
+
+      // Só reconcilia se houve mudanças desde o último poll
+      if (fullState.lastUpdated !== state.lastKnownTimestamp) {
+        state.lastKnownTimestamp = fullState.lastUpdated;
+        reconcileSlides(fullState.slides, fullState.statuses, fullState.slideStatuses || {});
+      }
     }
 
-    function onRefreshError() {
+    function onPollFailure() {
       state.isRefreshing = false;
+      state.consecutiveFailures++;
       setRefreshSpinner(false);
+      setSyncState('offline');
+      if (state.consecutiveFailures >= MAX_FAILURES_FOR_BANNER) showOfflineBanner();
     }
 
+    // ── Refresh manual (botão ↺) ──────────────────────────────────────────────
+    function manualRefresh() {
+      if (state.isRefreshing) return;
+      doPoll();
+    }
+
+    // ── Reconciliação de estado ───────────────────────────────────────────────
     function reconcileSlides(newSlides, newStatuses, newSlideStatuses) {
       const oldIds = new Set(state.slides.map(function(s) { return s.id; }));
       const newIds = new Set(newSlides.map(function(s) { return s.id; }));
@@ -413,16 +621,59 @@
         state.slides.some(function(s) { return !newIds.has(s.id); });
 
       state.statuses = newStatuses;
-      Object.assign(state.slideStatuses, newSlideStatuses);
 
       if (hasStructuralChange) {
-        state.slides = newSlides;
+        state.slides        = newSlides;
         state.slideStatuses = Object.assign({}, newSlideStatuses, state.slideStatuses);
         renderSlideList();
+      } else {
+        // Atualiza apenas os badges que mudaram
+        Object.keys(newSlideStatuses).forEach(function(sid) {
+          const oldEntry = state.slideStatuses[sid];
+          const newEntry = newSlideStatuses[sid];
+          if (!oldEntry || oldEntry.statusId !== newEntry.statusId) {
+            // Não sobrescreve se há uma atualização otimista pendente
+            if (state.pendingSlideId !== sid) {
+              state.slideStatuses[sid] = newEntry;
+              updateBadge(sid, newEntry.statusId);
+            }
+          }
+        });
       }
 
       renderProgressBar();
       updateFooter();
+    }
+
+    // ── Indicadores visuais de sync ───────────────────────────────────────────
+    function setSyncState(s) {
+      const dot   = document.getElementById('syncDot');
+      const label = document.getElementById('syncLabel');
+      if (!dot || !label) return;
+      dot.className = 'sync-dot ' + (s === 'syncing' ? 'syncing' : s === 'offline' ? 'offline' : '');
+      if (s === 'syncing') label.textContent = 'Sincronizando...';
+      else if (s === 'offline') label.textContent = 'Offline';
+    }
+
+    function startSyncCounter() {
+      state.lastSuccessfulPoll = Date.now();
+      setInterval(function() {
+        if (!state.lastSuccessfulPoll) return;
+        const label = document.getElementById('syncLabel');
+        if (!label) return;
+        // Não atualizar se estiver em outro estado
+        const dot = document.getElementById('syncDot');
+        if (dot && (dot.classList.contains('syncing') || dot.classList.contains('offline'))) return;
+        const sec = Math.floor((Date.now() - state.lastSuccessfulPoll) / 1000);
+        label.textContent = sec < 5 ? 'Atualizado agora' : 'Atualizado há ' + sec + 's';
+      }, 1000);
+    }
+
+    function showOfflineBanner() {
+      document.getElementById('offlineBanner').classList.add('show');
+    }
+    function hideOfflineBanner() {
+      document.getElementById('offlineBanner').classList.remove('show');
     }
 
     function setRefreshSpinner(on) {
@@ -454,8 +705,18 @@
 
         item.appendChild(num);
         item.appendChild(createBadgeEl(slide.id));
+        item.appendChild(createHistoryBtn(slide.id));
         main.appendChild(item);
       });
+    }
+
+    function createHistoryBtn(slideId) {
+      const btn = document.createElement('button');
+      btn.className = 'btn-history';
+      btn.title = 'Ver histórico';
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+      btn.onclick = function(e) { e.stopPropagation(); openHistoryPanel(slideId); };
+      return btn;
     }
 
     function createBadgeEl(slideId) {
@@ -529,6 +790,117 @@
         '<strong>' + percent + '%</strong> ' + count + ' ' + label +
         (count !== 1 ? 's' : '') +
         '</span>';
+    }
+
+    // ── Histórico ─────────────────────────────────────────────────────────────
+    function openHistoryPanel(slideId) {
+      setView('detail', slideId);
+      const panel = document.getElementById('historyPanel');
+      panel.innerHTML = '<div class="history-loading"><div class="spinner"></div><span>Carregando...</span></div>';
+
+      google.script.run
+        .withSuccessHandler(function(detail) { renderHistory(detail); })
+        .withFailureHandler(function(err) {
+          panel.innerHTML = '<div class="history-empty">Erro ao carregar histórico.</div>';
+        })
+        .getSlideDetail(slideId);
+    }
+
+    function renderHistory(detail) {
+      const panel = document.getElementById('historyPanel');
+      panel.innerHTML = '';
+
+      // Info do slide no topo
+      const info = document.createElement('div');
+      info.className = 'history-slide-info';
+      const s = resolveSlideStatus(detail.slideId);
+      info.innerHTML =
+        '<span class="history-slide-label">Slide ' + detail.pageNumber + '</span>' +
+        '<div class="status-badge" style="background:' + hexToRgba(s.color, 0.11) + ';color:' + s.color + ';flex:none">' +
+        s.emoji + ' ' + escHtml(s.name) + '</div>';
+      panel.appendChild(info);
+
+      if (!detail.history || detail.history.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'history-empty';
+        empty.textContent = 'Nenhuma alteração registrada.';
+        panel.appendChild(empty);
+        return;
+      }
+
+      detail.history.forEach(function(entry) {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+
+        const initial = (entry.changedBy || '?')[0].toUpperCase();
+        const avatarEl = document.createElement('div');
+        avatarEl.className = 'history-avatar';
+        avatarEl.textContent = initial;
+
+        const body = document.createElement('div');
+        body.className = 'history-body';
+
+        const user = document.createElement('div');
+        user.className = 'history-user';
+        user.textContent = entry.changedBy || 'desconhecido';
+
+        const change = document.createElement('div');
+        change.className = 'history-change';
+        if (entry.fromStatus) {
+          change.innerHTML =
+            statusChip(entry.fromStatus) +
+            '<span class="history-arrow">→</span>' +
+            statusChip(entry.toStatus);
+        } else {
+          change.innerHTML = 'Inicial: ' + statusChip(entry.toStatus);
+        }
+
+        const time = document.createElement('div');
+        time.className = 'history-time';
+        time.textContent = relativeTime(entry.changedAt);
+
+        body.appendChild(user);
+        body.appendChild(change);
+        body.appendChild(time);
+        item.appendChild(avatarEl);
+        item.appendChild(body);
+        panel.appendChild(item);
+      });
+    }
+
+    function statusChip(s) {
+      return '<span class="history-status" style="background:' + hexToRgba(s.color, 0.11) + ';color:' + s.color + '">' +
+        s.emoji + ' ' + escHtml(s.name) + '</span>';
+    }
+
+    // ── Navegação entre views ─────────────────────────────────────────────────
+    function setView(view, slideId) {
+      const main    = document.getElementById('main');
+      const panel   = document.getElementById('historyPanel');
+      const prog    = document.getElementById('progressSection');
+      const hdr     = document.getElementById('headerTitle');
+      const btnRef  = document.getElementById('btnRefresh');
+
+      if (view === 'detail') {
+        main.style.display  = 'none';
+        prog.style.display  = 'none';
+        panel.style.display = 'flex';
+
+        const num = state.slides.findIndex(function(s) { return s.id === slideId; });
+        hdr.outerHTML = '<button class="btn-back" id="headerTitle" onclick="setView(\'main\')">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>' +
+          'Slide ' + (num + 1) + '</button>';
+        btnRef.style.display = 'none';
+      } else {
+        main.style.display  = '';
+        panel.style.display = 'none';
+
+        // Restaurar header — substituir o btn-back pelo título original
+        const hdrEl = document.getElementById('headerTitle');
+        hdrEl.outerHTML = '<span class="header-title" id="headerTitle">SlideStatus</span>';
+        btnRef.style.display = '';
+        renderProgressBar();
+      }
     }
 
     // ── Status Selector ───────────────────────────────────────────────────────
@@ -611,6 +983,19 @@
       const id = entry ? entry.statusId : 'default-001';
       return state.statuses.find(function(s) { return s.id === id; }) ||
         { id: 'default-001', name: 'A Fazer', emoji: '🔲', color: '#6B7280', category: 'pending' };
+    }
+
+    function relativeTime(iso) {
+      const diff = Date.now() - new Date(iso).getTime();
+      const s = Math.floor(diff / 1000);
+      if (s < 60)  return 'agora';
+      const m = Math.floor(s / 60);
+      if (m < 60)  return 'há ' + m + ' min';
+      const h = Math.floor(m / 60);
+      if (h < 24)  return 'há ' + h + 'h';
+      const d = Math.floor(h / 24);
+      if (d < 30)  return 'há ' + d + 'd';
+      return new Date(iso).toLocaleDateString('pt-BR');
     }
 
     function hexToRgba(hex, a) {
