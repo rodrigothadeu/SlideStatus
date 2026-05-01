@@ -1,0 +1,10 @@
+## AIs
+
+context_agent/
+.claude/
+.mcp.json
+CLAUDE.md
+
+## Clasp / Node
+.clasprc.json
+node_modules/

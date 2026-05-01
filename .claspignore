@@ -1,0 +1,7 @@
+**/.git/**
+**/.claude/**
+**/context_agent/**
+**/node_modules/**
+.gitignore
+.clasprc.json
+**/*.md
