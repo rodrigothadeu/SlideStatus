@@ -1,4 +1,4 @@
-# SlideStatus
+# <img src="Logo SlideStatus Horizontal.PNG" alt="SlideStatus Logo" height="60">
 
 Add-on para Google Slides que adiciona gestão de status de workflow por slide diretamente na sidebar. Cada slide recebe um status (A Fazer, Em Progresso, Aprovado etc.), com histórico de alterações, barra de progresso e sincronização em tempo real entre colaboradores do deck.
 
