@@ -20,10 +20,14 @@ function onOpen(e) {
 function _createMenus() {
   const ui = SlidesApp.getUi();
   ui.createAddonMenu()
-    .addItem('Abrir SlideStatus', 'openSidebar')
+    .addItem('🚀 Abrir SlideStatus', 'openSidebar')
+    .addSeparator()
+    .addItem('🔄 Atualizar Dados', 'openSidebar')
     .addToUi();
-  ui.createMenu('SlideStatus')
-    .addItem('Abrir', 'openSidebar')
+  ui.createMenu('🚦 SlideStatus')
+    .addItem('🚀 Abrir Painel Lateral', 'openSidebar')
+    .addSeparator()
+    .addItem('🔄 Sincronizar Agora', 'openSidebar')
     .addToUi();
 }
 
