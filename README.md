@@ -1,9 +1,13 @@
-# <img src="Logo SlideStatus Horizontal.PNG" alt="SlideStatus Logo" height="60">
+<p align="center">
+  <img src="Logo Horizontal.png" alt="SlideStatus Logo" height="80">
+</p>
 
-[![Version](https://img.shields.io/badge/version-v1.1.0-blue.svg)](https://github.com/rodrigothadeu/SlideStatus/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
-[![GitHub stars](https://img.shields.io/github/stars/rodrigothadeu/SlideStatus?style=social)](https://github.com/rodrigothadeu/SlideStatus/stargazers)
+<p align="center">
+  <a href="https://github.com/rodrigothadeu/SlideStatus/releases"><img src="https://img.shields.io/badge/version-v1.1.0-blue.svg" alt="Version"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+  <a href="https://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="https://github.com/rodrigothadeu/SlideStatus/stargazers"><img src="https://img.shields.io/github/stars/rodrigothadeu/SlideStatus?style=social" alt="GitHub stars"></a>
+</p>
 
 Add-on para Google Slides que adiciona gestão de status de workflow por slide diretamente na sidebar. Cada slide recebe um status (A Fazer, Em Progresso, Aprovado etc.), com histórico de alterações, barra de progresso e sincronização em tempo real entre colaboradores do deck.
 
