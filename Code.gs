@@ -10,6 +10,14 @@
  * @param {Object} e Evento do GAS.
  */
 function onOpen(e) {
+  _createMenus();
+}
+
+/**
+ * @description Cria os menus do Add-on na barra de menus do Slides.
+ * Chamado por onOpen (Editor Add-on) e onFileScopeGranted (Workspace Add-on).
+ */
+function _createMenus() {
   const ui = SlidesApp.getUi();
   ui.createAddonMenu()
     .addItem('Abrir SlideStatus', 'openSidebar')
@@ -87,6 +95,48 @@ function getSlideDetail(slideId) {
  */
 function getVersion() {
   return '1.0.0';
+}
+
+// ─── Workspace Add-on — painel de ícones do Google Slides ────────────────────
+
+/**
+ * @description Trigger chamado quando o usuário concede acesso ao arquivo via Workspace Add-on.
+ * Recria os menus para que apareçam mesmo quando instalado pelo Marketplace.
+ * @param {Object} e Evento do GAS.
+ */
+function onFileScopeGranted(e) {
+  _createMenus();
+}
+
+/**
+ * @description Retorna o card exibido no painel lateral direito do Google Slides.
+ * Ativado pelo clique no ícone do SlideStatus no painel de ícones do Slides.
+ * @param {Object} e Evento do GAS.
+ * @returns {Card}
+ */
+function onSlidesHomepage(e) {
+  return CardService.newCardBuilder()
+    .setName('SlideStatus')
+    .addSection(
+      CardService.newCardSection()
+        .addWidget(
+          CardService.newTextButton()
+            .setText('Abrir SlideStatus')
+            .setOnClickAction(
+              CardService.newAction().setFunctionName('openSidebarAction')
+            )
+        )
+    )
+    .build();
+}
+
+/**
+ * @description Action handler que abre a sidebar principal via botão no card.
+ * @returns {ActionResponse}
+ */
+function openSidebarAction(e) {
+  openSidebar();
+  return CardService.newActionResponseBuilder().build();
 }
 
 // ─── RF-010: Viabilidade de emoji sobre miniatura nativa ─────────────────────

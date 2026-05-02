@@ -6,5 +6,20 @@
   "oauthScopes": [
     "https://www.googleapis.com/auth/presentations",
     "https://www.googleapis.com/auth/script.container.ui"
-  ]
+  ],
+  "addOns": {
+    "common": {
+      "name": "SlideStatus",
+      "logoUrl": "https://SUBSTITUIR_PELA_URL_PUBLICA_DO_ICONE_128x128.png"
+    },
+    "slides": {
+      "homepageTrigger": {
+        "runFunction": "onSlidesHomepage",
+        "enabled": true
+      },
+      "onFileScopeGrantedTrigger": {
+        "runFunction": "onFileScopeGranted"
+      }
+    }
+  }
 }
